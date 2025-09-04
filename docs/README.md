@@ -226,8 +226,8 @@ CMD ["node", "app.js"]
 
 ### Getting Ready
 
-- Download or Clone the source code from [GitHub](https://github.com/Jai2501/Tutorial2)
-- Open a command line/terminal window and navigate into the source code folder (`Tutorial2/demo-app`).
+- Download or Clone the source code from [GitHub](https://github.com/nus-CS3219/DockerHandsOnTutorial)
+- Open a command line/terminal window and navigate into the source code folder (`DockerHandsOnTutorial/demo-app`).
 
 ### The Dockerfile
 
@@ -576,7 +576,7 @@ networks:
 
 ### Building the Images
 
-Open a command line/terminal window and navigate to the root directory of the `Tutorial2` repository that you've downloaded or cloned. This directory contains the `docker-compose.yml` file.
+Open a command line/terminal window and navigate to the root directory of the `DockerHandsOnTutorial` repository that you've downloaded or cloned. This directory contains the `docker-compose.yml` file.
 
 Execute the command below to build all the services, networks, and volumes defined in your docker-compose.yml file. This process is efficient as it doesn't necessitate running individual build commands for each service.
 
