@@ -1,4 +1,4 @@
-# Tutorial 2: Hands-on With Docker
+# Hands-on Tutorial With Docker
 
 ## Objective
 
