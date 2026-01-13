@@ -91,7 +91,7 @@ Here are some common terminologies used in Docker that you should familiarise yo
 
 - File naming convention: `Dockerfile`
 
-```
+```dockerfile
 # Use an official Node.js runtime as a parent image
 FROM node:20-alpine
 
@@ -235,63 +235,63 @@ The Dockerfile is currently empty. The aim of this hands-on is to teach you how 
 
 1. As we are interested to build a Node.js Application using React, we need to have a runtime environment that has our desired version of Node.js installed. Thus, we would use the official Node image as a parent image to acheieve our objective.
 
-Add the following line to the Dockerfile:
+    Add the following line to the Dockerfile:
 
-```
-FROM node:20-alpine
-```
+    ```dockerfile
+    FROM node:20-alpine
+    ```
 
 2. Next, we specify the working directory in the container.
 
-Add the following line to the Dockerfile:
+    Add the following line to the Dockerfile:
 
-```
-WORKDIR /app
-```
+    ```dockerfile
+    WORKDIR /app
+    ```
 
 3. In the case of Node.js applications, we need to copy the `package.json` and `package-lock.json` (or `yarn.lock`) files as these include the relevant dependencies of our app. Node.js relies on these files to lookup and install the dependencies.
 
-Add the following line to the Dockerfile:
+    Add the following line to the Dockerfile:
 
-```
-COPY package*.json ./
-```
+    ```dockerfile
+    COPY package*.json ./
+    ```
 
 4. After the files have been copied, the relevant dependencies have to be installed, and on using the command `npm install`, the required node modules (dependencies) are installed.
 
-Add the following line to the Dockerfile:
+    Add the following line to the Dockerfile:
 
-```
-RUN npm install
-```
+    ```dockerfile
+    RUN npm install
+    ```
 
 5. After all dependencies have been installed, we copy the entire source code directory into the working directory of the container and this includes all of the relevant code.
 
-Add the following line to the Dockerfile:
+    Add the following line to the Dockerfile:
 
-```
-COPY . .
-```
+    ```dockerfile
+    COPY . .
+    ```
 
 6. Next, we want to be able to interact with our app and as React based apps by default start on port 3000, we expose that port. This allows the outside world to interact with the created container and our app using port 3000.
 
-Add the following line to the Dockerfile:
+    Add the following line to the Dockerfile:
 
-```
-EXPOSE 3000
-```
+    ```dockerfile
+    EXPOSE 3000
+    ```
 
 7. Now that all is set up, we want to start our app. For starting React based apps, the command used is `npm start`, and hence that is what we add as a command next.
 
-Add the following line to the Dockerfile:
+    Add the following line to the Dockerfile:
 
-```
-CMD ["npm", "start"]
-```
+    ```dockerfile
+    CMD ["npm", "start"]
+    ```
 
 Finally, the created Dockerfile should look like this:
 
-```
+```dockerfile
 FROM node:20-alpine
 
 WORKDIR /app
@@ -317,12 +317,12 @@ Using the `docker build` command, we will now create an image of our app.
 
 2. Run the following command:
 
-```
-docker build -t docker-demo-app .
-```
+    ```sh
+    docker build -t docker-demo-app .
+    ```
 
-- Above, the `-t` flag tags the create image with the name `docker-demo-app`.
-- `.` refers to look for the Dockerfile in the Current Working Directory (CWD)
+    - Above, the `-t` flag tags the create image with the name `docker-demo-app`.
+    - `.` refers to look for the Dockerfile in the Current Working Directory (CWD)
 
 ### Running the Container
 
@@ -330,106 +330,109 @@ With the Image ready, we can run our React app using Docker.
 
 1. In the same command line/terminal window, run the following command:
 
-```
-docker run --name my-app -p 3000:3000 -d docker-demo-app
-```  
-- Above, the flag `-p` allows to bind our systems port 3000 to the port 3000 of container. 
-- The flag `-d` allows to run the Docker Container in detached mode.
+    ```sh
+    docker run --name my-app -p 3000:3000 -d docker-demo-app
+    ```
 
-2. Open your browser of choice and go to http://localhost:3000/ to interact with the React App.
+    - Above, the flag `-p` allows to bind our systems port 3000 to the port 3000 of container.
+    - The flag `-d` allows to run the Docker Container in detached mode.
+
+2. Open your browser of choice and go to <http://localhost:3000/> to interact with the React App.
 
 3. The running container can be stopped and removed using the command:
 
-```
-docker stop my-app
-docker rm my-app
-```
+    ```sh
+    docker stop my-app
+    docker rm my-app
+    ```
 
 ### Binding the Current Working Directory
 
 Binding the Current Working Directory with the Docker Container allows you to edit your code on your local system and see the changes in the app in real-time that is running on the Docker Container.
 
-*Note: Ensure you have the folder `node_modules` with all the necessary dependencies in your local system. If not, run `npm install` locally.*  
+*Note: Ensure you have the folder `node_modules` with all the necessary dependencies in your local system. If not, run `npm install` locally.*
 
-1. In the same command line/terminal window, run the following command: 
+1. In the same command line/terminal window, run the following command:
 
-macOS users:  
-```
-docker run --name my-app -p 3000:3000 -v $(pwd):/app -d docker-demo-app
-```  
-Windows Command Line users:
+    macOS users:
 
-```
-docker run --name my-app -p 3000:3000 -v "%cd%:/app" -d docker-demo-app
-```
+    ```sh
+    docker run --name my-app -p 3000:3000 -v $(pwd):/app -d docker-demo-app
+    ```
 
-Windows Powershell users:
+    Windows Command Line users:
 
-```
-docker run --name my-app -p 3000:3000 -v ${PWD}:/app -d docker-demo-app
-```
+    ```sh
+    docker run --name my-app -p 3000:3000 -v "%cd%:/app" -d docker-demo-app
+    ```
 
-- The flag `-v` allows to mount the Current Working Directory as a volume in the Docker Container.
-- Note for Windows user: Mounting volume using a window host may slow down the application. For better experience, consider using WSL2. For more details, see this [Stack Overflow post](https://stackoverflow.com/questions/65285379/docker-volume-mapping-windows-incredible-slow). Remember, while mounting volume improves developer experience, it is **not essential** for development.
+    Windows Powershell users:
+
+    ```sh
+    docker run --name my-app -p 3000:3000 -v ${PWD}:/app -d docker-demo-app
+    ```
+
+    - The flag `-v` allows to mount the Current Working Directory as a volume in the Docker Container.
+    - Note for Windows user: Mounting volume using a window host may slow down the application. For better experience, consider using WSL2. For more details, see this [Stack Overflow post](https://stackoverflow.com/questions/65285379/docker-volume-mapping-windows-incredible-slow). Remember, while mounting volume improves developer experience, it is **not essential** for development.
 
 2. Go to `src/App.js` and add the following code inside the `function App()`:
 
-```
-function toggleAnimation() {
-  var logo = document.querySelector(".App-logo-clockwise");
-  var isLogoRotatingClockwise = logo !== null;
+    ```js
+    function toggleAnimation() {
+      var logo = document.querySelector(".App-logo-clockwise");
+      var isLogoRotatingClockwise = logo !== null;
 
-  if (isLogoRotatingClockwise) {
-    logo.classList.remove("App-logo-clockwise");
-    logo.classList.add("App-logo-anti-clockwise");
-  } else {
-    logo = document.querySelector(".App-logo-anti-clockwise");
+      if (isLogoRotatingClockwise) {
+        logo.classList.remove("App-logo-clockwise");
+        logo.classList.add("App-logo-anti-clockwise");
+      } else {
+        logo = document.querySelector(".App-logo-anti-clockwise");
 
-    logo.classList.remove("App-logo-anti-clockwise");
-    logo.classList.add("App-logo-clockwise");
-  }
-}
-```
+        logo.classList.remove("App-logo-anti-clockwise");
+        logo.classList.add("App-logo-clockwise");
+      }
+    }
+    ```
 
 3. In the same file, add the following code inside the `<header>` tag, right after the `<p>` tag
 
-```
-<button className="spin-btn" onClick={() => toggleAnimation()}>
-  Toggle Spin Direction
-</button>
-```
+    ```html
+    <button className="spin-btn" onClick={() => toggleAnimation()}>
+      Toggle Spin Direction
+    </button>
+    ```
 
 4. Press `CTRL/CMD + S`
 
 5. You should now be able to see a button that says "Toggle Spin Direction", which on clicking will change the spin direction of the React logo.
 
-![Updated React Page text](./finalReactPage.png)
+    ![Updated React Page text](./finalReactPage.png)
 
 6. The running container can be stopped and removed using the command:
 
-```
-docker stop my-app
-docker rm my-app
-```
+    ```sh
+    docker stop my-app
+    docker rm my-app
+    ```
 
-> :warning: Note: If you do not bind volumes, such changes can not be seen in real-time, and the containers have to be stopped and run again, making the process tedious. Please refer to the section on [Binding the Current Working Directory](#binding-the-current-working-directory)
+    > :warning: Note: If you do not bind volumes, such changes can not be seen in real-time, and the containers have to be stopped and run again, making the process tedious. Please refer to the section on [Binding the Current Working Directory](#binding-the-current-working-directory)
 
 ### Exercise
 
-1. Create a Dockerfile for demo-service based on the following inputs:
+1. Create a Dockerfile for `demo-service` based on the following inputs:
 
-- Parent image is `node:20-alpine`
-- Working directory as `/app`
-- Service Port Number `3001`
-- Command to run service: `npm start`
+    - Parent image is `node:20-alpine`
+    - Working directory as `/app`
+    - Service Port Number `3001`
+    - Command to run service: `npm start`
 
 2. Build and Run the container.
 
 3. Go to `http://localhost:3001/` and you should see the following output:
 
-![Jokes API Page](./finalJokesAPI.png)
+    ![Jokes API Page](./finalJokesAPI.png)
 
-4. Once completed, stop and remove the container. 
+4. Once completed, stop and remove the container.
 
 ## Docker Compose
 
@@ -452,9 +455,7 @@ Docker Compose is a tool for defining and running multi-container Docker applica
 
 - File naming convention: `docker-compose.yml`
 
-```
-version: '3.8'  # specifies the Docker Compose file version
-
+```yaml
 services:
   web:  # the name of the first service
     image: nginx:latest  # uses the latest Nginx image
@@ -580,7 +581,7 @@ Open a command line/terminal window and navigate to the root directory of the `D
 
 Execute the command below to build all the services, networks, and volumes defined in your docker-compose.yml file. This process is efficient as it doesn't necessitate running individual build commands for each service.
 
-```
+```sh
 docker-compose build --no-cache
 ```
 
@@ -590,29 +591,29 @@ docker-compose build --no-cache
 
 1. By executing the following command, all the services defined in the docker-compose.yml file are ran.
 
-```
-docker-compose up -d
-```
+    ```sh
+    docker-compose up -d
+    ```
 
-- Above, the flag `-d` runs all containers in detached mode.
+    - Above, the flag `-d` runs all containers in detached mode.
 
-2. Open your browser of choice and go to http://localhost:3000/ to interact with the React App.
+2. Open your browser of choice and go to <http://localhost:3000/> to interact with the React App.
 
 3. The running container can be stopped using the command:
 
-```
-docker-compose down
-```
+    ```sh
+    docker-compose down
+    ```
 
 ### Exercise
 
-1. Edit the `docker-compose.yml` file and add demo-service as a `sevice` in the file.
+1. Edit the `docker-compose.yml` file and add `demo-service` as a service in the file.
 
 2. Build and Run the containers using `docker-compose` commands.
 
-3. Go to `http://localhost:3000/jokes` and you should see the following output:
+3. Go to <http://localhost:3000/jokes> and you should see the following output:
 
-![Jokes Page](./finalJokesPage.png)
+    ![Jokes Page](./finalJokesPage.png)
 
 4. Feel free to add and edit code to see changes happen in real-time.
 
