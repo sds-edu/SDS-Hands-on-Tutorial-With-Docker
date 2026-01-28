@@ -1,4 +1,4 @@
-# Hands-on Tutorial With Docker
+# CS3219 SE Toolbox - Hands-on Tutorial With Docker
 
 ## Objective
 
@@ -93,7 +93,7 @@ Here are some common terminologies used in Docker that you should familiarise yo
 
 ```dockerfile
 # Use an official Node.js runtime as a parent image
-FROM node:20-alpine
+FROM node:24-alpine
 
 # Set the working directory in the container
 WORKDIR /app
@@ -238,7 +238,7 @@ The Dockerfile is currently empty. The aim of this hands-on is to teach you how 
     Add the following line to the Dockerfile:
 
     ```dockerfile
-    FROM node:20-alpine
+    FROM node:24-alpine
     ```
 
 2. Next, we specify the working directory in the container.
@@ -292,7 +292,7 @@ The Dockerfile is currently empty. The aim of this hands-on is to teach you how 
 Finally, the created Dockerfile should look like this:
 
 ```dockerfile
-FROM node:20-alpine
+FROM node:24-alpine
 
 WORKDIR /app
 
@@ -357,7 +357,7 @@ Binding the Current Working Directory with the Docker Container allows you to ed
     macOS users:
 
     ```sh
-    docker run --name my-app -p 3000:3000 -v $(pwd):/app -d docker-demo-app
+    docker run --name my-app -p 3000:3000 -v "$(pwd):/app" -d docker-demo-app
     ```
 
     Windows Command Line users:
@@ -421,14 +421,14 @@ Binding the Current Working Directory with the Docker Container allows you to ed
 
 1. Create a Dockerfile for `demo-service` based on the following inputs:
 
-    - Parent image is `node:20-alpine`
+    - Parent image is `node:24-alpine`
     - Working directory as `/app`
     - Service Port Number `3001`
     - Command to run service: `npm start`
 
 2. Build and Run the container.
 
-3. Go to `http://localhost:3001/` and you should see the following output:
+3. Go to <http://localhost:3001/> and you should see the following output:
 
     ![Jokes API Page](./finalJokesAPI.png)
 
