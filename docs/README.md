@@ -1,4 +1,4 @@
-# CS3219 SE Toolbox - Hands-on Tutorial With Docker
+# SDS SE Toolbox - Hands-on Tutorial With Docker
 
 ## Objective
 
@@ -58,7 +58,7 @@ Here are some common terminologies used in Docker that you should familiarise yo
 | Docker Desktop   | A GUI tool that includes the Docker Daemon, Client, Docker Compose, Content Trust, Kubernetes, etc.                                                                     |
 | Docker Objects   | Images, containers, networks, volumes, plugins, etc.                                                                                                                    |
 
-> Referenced from CS3219 SE Toolbox - Containerization
+> Referenced from SDS SE Toolbox - Containerization
 
 ## Dockerfile
 
@@ -226,7 +226,7 @@ CMD ["node", "app.js"]
 
 ### Getting Ready
 
-- Download or Clone the source code from [GitHub](https://github.com/nus-CS3219/DockerHandsOnTutorial)
+- Download or Clone the source code from [GitHub](https://github.com/sds-edu/SDS-Hands-on-Tutorial-With-Docker)
 - Open a command line/terminal window and navigate into the source code folder (`DockerHandsOnTutorial/demo-app`).
 
 ### The Dockerfile
