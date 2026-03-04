@@ -1,4 +1,4 @@
-# SDS SE Toolbox - Hands-on Tutorial With Docker
+# SDS Toolbox - Hands-on Tutorial With Docker
 
 ## Objective
 
