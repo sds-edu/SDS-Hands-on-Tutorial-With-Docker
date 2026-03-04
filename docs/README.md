@@ -1,8 +1,10 @@
 # SDS Toolbox - Hands-on Tutorial With Docker
 
+The SDS Toolbox is a collection of guides and resources to help you get started with the various tools and technologies used in software engineering.
+
 ## Objective
 
-This tutorial aims to enable you to use Docker as an integral part of the development process for a Node.js web application. The focus is on providing the skills necessary to compile, run, and manage code with Docker containers, highlighting Docker's role as a versatile development toolbox that enhances workflow consistency and efficiency.
+This guide aims to enable you to use Docker as an integral part of the development process for a Node.js web application. The focus is on providing the skills necessary to compile, run, and manage code with Docker containers, highlighting Docker's role as a versatile development toolbox that enhances workflow consistency and efficiency.
 
 ## Introduction
 
