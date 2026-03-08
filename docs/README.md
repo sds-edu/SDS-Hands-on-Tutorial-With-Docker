@@ -1,6 +1,6 @@
 # SDS Toolbox - Hands-on Tutorial With Docker
 
-The SDS Toolbox is a collection of guides and resources to help you get started with the various tools and technologies used in software engineering.
+The Software Design School (SDS) Toolbox is a collection of guides and resources to help you get started with the various tools and technologies used in software engineering.
 
 ## Objective
 
@@ -228,7 +228,7 @@ CMD ["node", "app.js"]
 
 ### Getting Ready
 
-- Download or Clone the source code from [GitHub](https://github.com/sds-edu/SDS-Hands-on-Tutorial-With-Docker)
+- Fork or Clone the source code from [SDS-Hands-on-Tutorial-With-Docker](https://github.com/sds-edu/SDS-Hands-on-Tutorial-With-Docker) repository.
 - Open a command line/terminal window and navigate into the source code folder (`DockerHandsOnTutorial/demo-app`).
 
 ### The Dockerfile
