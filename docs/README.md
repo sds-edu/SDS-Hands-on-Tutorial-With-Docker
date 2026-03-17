@@ -646,6 +646,9 @@ You may learn more about the following with plenty of resources available all ov
 - [Docker Docs](https://docs.docker.com/)
 - [Node.js](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs)
 - [React](https://react.dev/learn)
-- [ChatGPT](https://chat.openai.com/)
 - [Stackoverflow](https://stackoverflow.com/)
 - [W3Schools](https://www.w3schools.com/)
+
+## AI Declaration
+
+Some parts of this guide were structured, formatted, and refined with the assistance of `ChatGPT`. The model was used to draft technical explanations and generate code snippets. All code snippets used in the guide and command sequences were reviewed, implemented, and tested by the teaching team to ensure accuracy and functionality.
